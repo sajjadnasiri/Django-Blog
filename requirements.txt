@@ -1,0 +1,17 @@
+# general modules
+django >3.2, <3.3
+python-decouple
+pillow
+requests
+beautifulsoup4
+
+# databases
+psycopg2-binary
+
+# refactor & test modules
+
+# third party
+
+# deployment
+
+# Background processing and cache
