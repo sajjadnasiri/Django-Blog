@@ -14,7 +14,7 @@ class Post(models.Model):
 
     author = models.ForeignKey(Profile, on_delete=models.PROTECT)
     category = models.ManyToManyField("Category")
-    tags = models.ManyToManyField("Tag")
+    tag = models.ManyToManyField("Tag")
 
     class Meta:
         ordering = ["-published_date", "-created_date"]
