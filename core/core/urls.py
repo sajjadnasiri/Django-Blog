@@ -1,11 +1,17 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.http import HttpResponse
 
+
+def startup(request):
+    return HttpResponse("<h1>s.nasiri.cs@gmail.com</h1>", status=200)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', startup),
+    path('blog/', include('blog.urls')),
 ]
 
 
