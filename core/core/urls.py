@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 # from rest_framework.documentation import include_docs_urls
 from rest_framework import permissions
@@ -24,12 +25,9 @@ schema_view = get_schema_view(
 )
 
 
-def startup(request):
-    return HttpResponse("<h1>s.nasiri.cs@gmail.com</h1>", status=200)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', startup),
+    path('', TemplateView.as_view(template_name="index.html")),
     path('blog/', include('blog.urls')),
     path('accounts/', include('accounts.urls')),
 

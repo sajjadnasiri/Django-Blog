@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignUpAPIView, VerifyAPIView
+from .views import SignUpAPIView
 
 
 urlpatterns =[
