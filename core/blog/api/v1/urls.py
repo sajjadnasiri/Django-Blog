@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from .views import PostView, CategoryView, TagView
 
 app_name = "api-v1"

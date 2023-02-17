@@ -15,7 +15,8 @@ Faker
 djangorestframework
 markdown
 django-filter
-numpy
+djangorestframework-simplejwt
+drf-yasg[validation]
 
 # deployment
 
