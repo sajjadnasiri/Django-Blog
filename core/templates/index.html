@@ -73,7 +73,7 @@
               <div class="hero_box d-flex flex-row align-items-center justify-content-start">
                 <img src="{% static 'images/earth-globe.svg' %}" class="svg" alt="">
                 <div class="hero_box_content">
-                  <h2 class="hero_box_title">BLOG</h2>
+                  <h2 class="hero_box_title"><a href="{% url 'blog:api-v1:posts' %}">BLOG</a></h2>
                   <a href="#" class="hero_box_link">view more</a>
                 </div>
               </div>
@@ -82,8 +82,8 @@
               <div class="hero_box d-flex flex-row align-items-center justify-content-start">
                 <img src="{% static 'images/books.svg' %}" class="svg" alt="">
                 <div class="hero_box_content">
-                  <h2 class="hero_box_title"> API-DOC</h2>
-                  <a href="#" class="hero_box_link">Download json</a>
+                  <h2 class="hero_box_title"><a href="{% url 'schema-swagger-ui' %}">API-DOC</a></h2>
+                  <a href="{% url 'schema-redoc' %}" class="hero_box_link">Download json</a>
                 </div>
               </div>
             </div>
@@ -91,7 +91,7 @@
               <div class="hero_box d-flex flex-row align-items-center justify-content-start">
                 <img src="{% static 'images/professor.svg' %}" class="svg" alt="">
                 <div class="hero_box_content">
-                  <h2 class="hero_box_title">ACCOUNTS</h2>
+                  <h2 class="hero_box_title"><a href="{% url 'accounts:api-v1:signup' %}">ACCOUNTS</a></h2>
                   <a href="#" class="hero_box_link">view more</a>
                 </div>
               </div>
