@@ -16,7 +16,9 @@ djangorestframework
 markdown
 django-filter
 djangorestframework-simplejwt
+djangorestframework-jwt
 drf-yasg[validation]
+django-mail-templated
 
 # deployment
 

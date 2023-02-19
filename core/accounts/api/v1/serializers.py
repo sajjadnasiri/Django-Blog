@@ -5,7 +5,10 @@ from ...models import User, Profile
 
 
 class SignUpSerializer(serializers.ModelSerializer):
-    pass_confirm = serializers.CharField(max_length=255, write_only=True)
+    pass_confirm = serializers.CharField(
+        max_length=255, write_only=True,
+        style={'input_type': 'password'}
+    )
 
     class Meta:
         model = User
@@ -26,3 +29,6 @@ class SignUpSerializer(serializers.ModelSerializer):
         validated_data.pop("pass_confirm")
         return User.objects.create_user(**validated_data)
     
+
+class kdckldldkl:
+    pass
