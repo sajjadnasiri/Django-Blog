@@ -26,11 +26,10 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name="index.html")),
-    path('blog/', include('blog.urls')),
-    path('accounts/', include('accounts.urls')),
-
+    path("admin/", admin.site.urls),
+    path("", TemplateView.as_view(template_name="index.html")),
+    path("blog/", include("blog.urls")),
+    path("accounts/", include("accounts.urls")),
     path(
         "swagger/blog-api.json",
         schema_view.without_ui(cache_timeout=0),
@@ -51,4 +50,3 @@ urlpatterns = [
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

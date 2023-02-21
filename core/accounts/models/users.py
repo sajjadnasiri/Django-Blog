@@ -1,10 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.utils.translation import ugettext_lazy as _
 
 
 class UserManager(BaseUserManager):
-    
     # Overwrite create userPermissionsMixin
     def create_user(self, email, password, **extra_fields):
         if not email:
@@ -34,13 +37,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     Custom User Model
     """
+
     email = models.EmailField(max_length=255, unique=True)
-    
+
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
-    
+
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 

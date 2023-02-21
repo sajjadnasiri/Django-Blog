@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0001_initial'),
+        ("blog", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='post',
-            old_name='tags',
-            new_name='tag',
+            model_name="post",
+            old_name="tags",
+            new_name="tag",
         ),
         migrations.AlterField(
-            model_name='post',
-            name='title',
+            model_name="post",
+            name="title",
             field=models.CharField(max_length=255),
         ),
     ]

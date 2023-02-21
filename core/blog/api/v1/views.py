@@ -18,7 +18,6 @@ class PostView(viewsets.ModelViewSet):
     filterset_class = PostFilters
     ordering_fields = ["published_date"]
     search_fields = ["title", "content"]
-    
 
 
 class CategoryView(viewsets.ModelViewSet):
@@ -30,5 +29,3 @@ class CategoryView(viewsets.ModelViewSet):
 class TagView(viewsets.ModelViewSet):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
-
-

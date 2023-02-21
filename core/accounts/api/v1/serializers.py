@@ -9,20 +9,19 @@ from ...models import User, Profile
 
 class SignUpSerializer(serializers.ModelSerializer):
     pass_confirm = serializers.CharField(
-        max_length=255, write_only=True,
-        style={'input_type': 'password'}
+        max_length=255, write_only=True, style={"input_type": "password"}
     )
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'pass_confirm')
+        fields = ("email", "password", "pass_confirm")
 
     def validate(self, attrs):
-        if attrs.get('password') != attrs.get('pass_confirm'):
+        if attrs.get("password") != attrs.get("pass_confirm"):
             raise serializers.ValidationError({"details": "passwords does not match"})
-        
+
         try:
-            validate_password(attrs.get('password'))
+            validate_password(attrs.get("password"))
         except exceptions.ValidationError as E:
             raise serializers.ValidationError({"Password": list(E.messages)})
 
@@ -31,7 +30,7 @@ class SignUpSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop("pass_confirm")
         return User.objects.create_user(**validated_data)
-    
+
 
 class CustomObtainTokenSerializer(serializers.Serializer):
     email = serializers.CharField(label=("email"), write_only=True)
@@ -42,6 +41,7 @@ class CustomObtainTokenSerializer(serializers.Serializer):
         write_only=True,
     )
     token = serializers.CharField(label=_("Token"), read_only=True)
+
     def validate(self, attrs):
         username = attrs.get("email")
         password = attrs.get("password")
@@ -56,11 +56,13 @@ class CustomObtainTokenSerializer(serializers.Serializer):
                 msg = _("unable to log in with provided credentials")
                 raise serializers.ValidationError({"details": msg})
             if not user.is_verified:
-                raise serializers.ValidationError({"details": "This user is not verified"})
+                raise serializers.ValidationError(
+                    {"details": "This user is not verified"}
+                )
         else:
             msg = _("must include email and password")
             raise serializers.ValidationError({"details": msg})
-        
+
         attrs["user"] = user
         return attrs
 
@@ -75,17 +77,22 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         validated_data["first_name"] = Profile.objects.get(user=self.user).first_name
         validated_data["last_name"] = Profile.objects.get(user=self.user).last_name
         return validated_data
-    
+
 
 class ChangePasswordSerializer(serializers.Serializer):
-    old_password = serializers.CharField(required=True, max_length=255, style={'input_type': 'password'})
-    new_password1 = serializers.CharField(required=True, max_length=255, style={'input_type': 'password'})
-    new_password2 = serializers.CharField(required=True, max_length=255, style={'input_type': 'password'})
+    old_password = serializers.CharField(
+        required=True, max_length=255, style={"input_type": "password"}
+    )
+    new_password1 = serializers.CharField(
+        required=True, max_length=255, style={"input_type": "password"}
+    )
+    new_password2 = serializers.CharField(
+        required=True, max_length=255, style={"input_type": "password"}
+    )
 
     def validate(self, attrs):
-        if attrs.get('new_password1') != attrs.get('new_password2'):
-            raise serializers.ValidationError({"details":
-                                               "password dosnt match"})
+        if attrs.get("new_password1") != attrs.get("new_password2"):
+            raise serializers.ValidationError({"details": "password dosnt match"})
         try:
             validate_password(attrs.get("new_password1"))
         except exceptions.ValidationError as e:
@@ -96,6 +103,7 @@ class ChangePasswordSerializer(serializers.Serializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source="user.email", read_only=True)
+
     class Meta:
         model = Profile
         fields = "__all__"

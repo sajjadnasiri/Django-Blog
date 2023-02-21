@@ -5,46 +5,75 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('accounts', '0001_initial'),
+        ("accounts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(blank=True, max_length=255)),
-                ('description', models.CharField(blank=True, max_length=2048)),
-                ('content', models.TextField(blank=True)),
-                ('published', models.BooleanField(default=False)),
-                ('created_date', models.DateTimeField(auto_now_add=True)),
-                ('modified_date', models.DateTimeField(auto_now=True)),
-                ('published_date', models.DateTimeField(blank=True, null=True)),
-                ('view', models.IntegerField(default=0)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='accounts.profile')),
-                ('category', models.ManyToManyField(to='blog.Category')),
-                ('tags', models.ManyToManyField(to='blog.Tag')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(blank=True, max_length=255)),
+                ("description", models.CharField(blank=True, max_length=2048)),
+                ("content", models.TextField(blank=True)),
+                ("published", models.BooleanField(default=False)),
+                ("created_date", models.DateTimeField(auto_now_add=True)),
+                ("modified_date", models.DateTimeField(auto_now=True)),
+                ("published_date", models.DateTimeField(blank=True, null=True)),
+                ("view", models.IntegerField(default=0)),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="accounts.profile",
+                    ),
+                ),
+                ("category", models.ManyToManyField(to="blog.Category")),
+                ("tags", models.ManyToManyField(to="blog.Tag")),
             ],
             options={
-                'ordering': ['-published_date', '-created_date'],
+                "ordering": ["-published_date", "-created_date"],
             },
         ),
     ]

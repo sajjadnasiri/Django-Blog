@@ -1,0 +1,20 @@
+[flake8]
+
+exclude =
+    .git,
+    .gitignore,
+    .idea
+    .vscode
+    *.pot,
+    *.py[co],
+    __pycache__,
+    venv,
+    .env,
+    settings.py,
+    __init__.py,
+
+ignore =
+    E501,
+    F401,
+    W291,
+    W293
