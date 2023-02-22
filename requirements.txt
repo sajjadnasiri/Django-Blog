@@ -12,6 +12,7 @@ psycopg2-binary
 Faker
 flake8
 black
+pytest
 
 # third party
 djangorestframework
