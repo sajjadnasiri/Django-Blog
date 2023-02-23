@@ -30,7 +30,7 @@ urlpatterns = [
         ),
         name="tag",
     ),
-    path("posts/", PostView.as_view({"get": "list"}), name="posts"),
+    path("posts/", PostView.as_view({"get": "list", "post":"create"}), name="posts"),
     path(
         "posts/<int:pk>/",
         PostView.as_view(

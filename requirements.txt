@@ -13,6 +13,7 @@ Faker
 flake8
 black
 pytest
+pytest-django
 
 # third party
 djangorestframework
@@ -22,6 +23,7 @@ djangorestframework-simplejwt
 djangorestframework-jwt
 drf-yasg[validation]
 django-mail-templated
+reportlab
 
 # deployment
 
