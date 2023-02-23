@@ -17,10 +17,7 @@ jobs:
     
     - name: Build the Docker-Compose image
       run: docker-compose build -d
-    
-    - name: reformat
-      run: docker exec backend sh -c "black ."
 
     - name: run test
-      run: docker exec backend sh -c "flake8 && pytest ."
+      run: docker-compose exec backend sh -c "flake8 && pytest ."
       
