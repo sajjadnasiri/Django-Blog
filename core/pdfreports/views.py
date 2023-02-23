@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 
+
 def pdf_create_view(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
@@ -21,4 +22,4 @@ def pdf_create_view(request):
     # FileResponse sets the Content-Disposition header so that browsers
     # present the option to save the file.
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+    return FileResponse(buffer, as_attachment=True, filename="hello.pdf")

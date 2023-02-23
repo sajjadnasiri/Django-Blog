@@ -3,6 +3,4 @@ from .views import pdf_create_view
 
 appname = "pdf"
 
-urlpatterns = [
-    path("", pdf_create_view, name="pdf-create")
-]
+urlpatterns = [path("", pdf_create_view, name="pdf-create")]

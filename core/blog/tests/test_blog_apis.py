@@ -11,11 +11,15 @@ def api_client():
     client = APIClient()
     return client
 
+
 @pytest.fixture
 def create_user():
-    user = User.objects.create_user(email="s@nasiri.com", password="sdv@#$Rvsd3", is_verified=True)
-    profile = Profile.objects.get(user=user)
+    user = User.objects.create_user(
+        email="s@nasiri.com", password="sdv@#$Rvsd3", is_verified=True
+    )
+    # profile = Profile.objects.get(user=user)
     return user
+
 
 @pytest.fixture
 def create_category_tag():
@@ -26,15 +30,14 @@ def create_category_tag():
 
 @pytest.mark.django_db
 class TestResponses:
-
     def test_200_ok_response(self, api_client):
-        url = reverse('blog:api-v1:posts')
+        url = reverse("blog:api-v1:posts")
         response = api_client.get(url)
         assert response.status_code == 200
 
     def test_create_post_401(self, api_client):
         # Not Login
-        url = reverse('blog:api-v1:posts')
+        url = reverse("blog:api-v1:posts")
         data = {
             "title": "test",
             "description": "test description",
@@ -46,7 +49,7 @@ class TestResponses:
         assert response.status_code == 401
 
     def test_create_post_201(self, api_client, create_user, create_category_tag):
-        url = reverse('blog:api-v1:posts')
+        url = reverse("blog:api-v1:posts")
         category, tag = create_category_tag
         data = {
             "title": "test",
@@ -60,8 +63,10 @@ class TestResponses:
         response = api_client.post(url, data=data)
         assert response.status_code == 201
 
-    def test_create_invalid_post_400(self, api_client, create_user, create_category_tag):
-        url = reverse('blog:api-v1:posts')
+    def test_create_invalid_post_400(
+        self, api_client, create_user, create_category_tag
+    ):
+        url = reverse("blog:api-v1:posts")
         category, tag = create_category_tag
         data = {
             "title": "test",
