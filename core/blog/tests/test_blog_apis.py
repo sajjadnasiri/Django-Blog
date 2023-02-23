@@ -77,3 +77,5 @@ class TestResponses:
         api_client.force_login(user=user)
         response = api_client.post(url, data=data)
         assert response.status_code == 400
+
+"""'scs'dc'sdc'sdc'sdc'sdc'"""
