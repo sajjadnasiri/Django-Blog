@@ -74,6 +74,6 @@ class TestResponses:
             "published_date": datetime.now(),
         }
         user = create_user
-        api_client.force_login(user=user)
+        api_client.force_authenticate(user=user)
         response = api_client.post(url, data=data)
         assert response.status_code == 400
